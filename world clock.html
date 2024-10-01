@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>World Clock</title>
+    <style>
+      body {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+        background-color: rgb(32, 32, 250);
+      }
+      .clock {
+        margin: 20px;
+        padding: 20px;
+        border: 2px solid #111111;
+        border-radius: 10px;
+        display: inline-block;
+        width: 160px;
+        height: 160px;
+        position: relative;
+        background-color: #f5f0a5;
+      }
+      .time {
+        font-size: 24px;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .date {
+        font-size: 14px;
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .location {
+        font-size: 18px;
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>World Clock</h1>
+    <div class="clock" id="america">
+      <div class="location">America</div>
+      <div class="time" id="time-america"></div>
+      <div class="date" id="date-america"></div>
+    </div>
+    <div class="clock" id="iceland">
+      <div class="location">Iceland</div>
+      <div class="time" id="time-iceland"></div>
+      <div class="date" id="date-iceland"></div>
+    </div>
+    <div class="clock" id="france">
+      <div class="location">France</div>
+      <div class="time" id="time-france"></div>
+      <div class="date" id="date-france"></div>
+    </div>
+    <div class="clock" id="south-africa">
+      <div class="location">South Africa</div>
+      <div class="time" id="time-south-africa"></div>
+      <div class="date" id="date-south-africa"></div>
+    </div>
+    <div class="clock" id="asia">
+      <div class="location">Asia</div>
+      <div class="time" id="time-asia"></div>
+      <div class="date" id="date-asia"></div>
+    </div>
+
+    <script>
+      function updateClocks() {
+        const optionsTime = {
+          timeZone: "America/New_York",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        };
+        const optionsDate = {
+          timeZone: "America/New_York",
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+        };
+        document.getElementById("time-america").innerText =
+          new Intl.DateTimeFormat("en-US", optionsTime).format(new Date());
+        document.getElementById("date-america").innerText =
+          new Intl.DateTimeFormat("en-US", optionsDate).format(new Date());
+
+        optionsTime.timeZone = "Atlantic/Reykjavik";
+        optionsDate.timeZone = "Atlantic/Reykjavik";
+        document.getElementById("time-iceland").innerText =
+          new Intl.DateTimeFormat("en-US", optionsTime).format(new Date());
+        document.getElementById("date-iceland").innerText =
+          new Intl.DateTimeFormat("en-US", optionsDate).format(new Date());
+
+        optionsTime.timeZone = "Europe/Paris";
+        optionsDate.timeZone = "Europe/Paris";
+        document.getElementById("time-france").innerText =
+          new Intl.DateTimeFormat("en-US", optionsTime).format(new Date());
+        document.getElementById("date-france").innerText =
+          new Intl.DateTimeFormat("en-US", optionsDate).format(new Date());
+
+        optionsTime.timeZone = "Africa/Johannesburg";
+        optionsDate.timeZone = "Africa/Johannesburg";
+        document.getElementById("time-south-africa").innerText =
+          new Intl.DateTimeFormat("en-US", optionsTime).format(new Date());
+        document.getElementById("date-south-africa").innerText =
+          new Intl.DateTimeFormat("en-US", optionsDate).format(new Date());
+
+        optionsTime.timeZone = "Asia/Tokyo"; // You can change this to any specific Asian timezone
+        optionsDate.timeZone = "Asia/Tokyo";
+        document.getElementById("time-asia").innerText =
+          new Intl.DateTimeFormat("en-US", optionsTime).format(new Date());
+        document.getElementById("date-asia").innerText =
+          new Intl.DateTimeFormat("en-US", optionsDate).format(new Date());
+      }
+
+      setInterval(updateClocks, 1000);
+      updateClocks();
+    </script>
+  </body>
+</html>
